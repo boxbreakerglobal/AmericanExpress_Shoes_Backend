@@ -15,6 +15,8 @@ export const addUser = async(req, res)=>{
 
         const newAdmin = new userModel({email,password:hashedPassword})
         
+        newAdmin.save()
+        
     }catch(error){
         comsole.log(error)
         return res.json({success:false})
