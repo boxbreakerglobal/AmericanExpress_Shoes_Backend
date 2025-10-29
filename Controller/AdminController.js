@@ -14,6 +14,8 @@ export const addAdmin = async(req, res)=>{
         const hashedPassword = await bcrypt.hash(password,10)
 
         const newAdmin = new adminModel({email,password:hashedPassword})
+
+        return res.json({success:true})
         
     }catch(error){
         comsole.log(error)
