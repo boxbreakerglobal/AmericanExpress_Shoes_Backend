@@ -13,10 +13,14 @@ const shoeSchema = new mongoose.Schema({
     quantity:{
         type:String
     },
+    
     image:{
         type:String
     },
     Gender:{
+        type:String
+    },
+    cost:{
         type:String
     }
 },{timestamps:true})
