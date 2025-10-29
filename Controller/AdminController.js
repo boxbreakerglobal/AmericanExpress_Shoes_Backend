@@ -35,7 +35,7 @@ export const adminLogin = async(req,res)=>{
             return res.json({success:false, message:"Invalid email or password"})
         }
 
-        const comparePassword = await bcrypt.hash(password,user.password)
+        const comparePassword = await bcrypt.compare(password,user.password)
 
         if(!comparePassword){
             return res.json({success:false, message:"Invalid email or password"})
