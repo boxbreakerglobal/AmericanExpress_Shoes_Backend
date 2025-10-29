@@ -15,6 +15,8 @@ export const addAdmin = async(req, res)=>{
 
         const newAdmin = new adminModel({email,password:hashedPassword})
 
+        newAdmin.save()
+
         return res.json({success:true})
         
     }catch(error){
