@@ -1,5 +1,5 @@
 import axios from "axios";
-import { orderModel } from "../Models/Orders";
+import { orderModel } from "../Models/Orders.js";
 const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
 
 export const initializePayment = async (req, res) => {
