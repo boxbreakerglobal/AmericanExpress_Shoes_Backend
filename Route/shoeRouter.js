@@ -3,6 +3,9 @@ import { upload } from "../Middleware/ImageUpload.js"
 import { addShoe, allShoes,deleteShoe,updateShoe } from "../Controller/ShoeController.js"
 import { addAdmin,adminLogin } from "../Controller/AdminController.js"
 import { userLogin , addUser} from "../Controller/UserController.js"
+import { initializePayment, verifyPayment } from "../Controller/PaymentController.js"
+
+
 
 export const shoeRouter = express.Router()
 
@@ -20,4 +23,7 @@ shoeRouter.post("/admin-login", adminLogin)
 shoeRouter.post("/add-user", addUser)
 shoeRouter.post("/user-login", userLogin)
 
+//
 
+shoeRouter.post("/initiate-payment",initializePayment)
+shoeRouter.post("/verify-payment/:reference", verifyPayment)
