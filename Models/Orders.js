@@ -19,6 +19,9 @@ const orderSchema = new mongoose.Schema({
     },
     orderMode:{
         type:String
+    },
+    date:{
+        type:String
     }
 
 },{timestamps:true})
