@@ -14,7 +14,7 @@ const shoeSchema = new mongoose.Schema({
         type:String
     },
     
-    image:{
+    images:{
         type:[String]
     },
     Gender:{
