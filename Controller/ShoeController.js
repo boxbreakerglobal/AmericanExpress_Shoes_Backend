@@ -5,7 +5,7 @@ import { shoeModel } from "../Models/Shoe.js";
 export const addShoe = async(req,res)=>{
     try{
 
-        const image = req.file? req.file.path:""
+        const image = req.files.length>=0? req.files:[]
         const newShoe = new shoeModel({...req.body,image})
         newShoe.save()
 

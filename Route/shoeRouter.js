@@ -9,7 +9,7 @@ import { initializePayment, verifyPayment } from "../Controller/PaymentControlle
 
 export const shoeRouter = express.Router()
 
-shoeRouter.post("/add-shoe", upload.single("image"), addShoe)
+shoeRouter.post("/add-shoe", upload.array("images"), addShoe)
 shoeRouter.get("/all-shoes",allShoes)
 shoeRouter.delete("/delete-shoe/:id",deleteShoe)
 shoeRouter.put("/update-shoe/:id", upload.single("image"), updateShoe)
