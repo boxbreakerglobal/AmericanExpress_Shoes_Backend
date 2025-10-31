@@ -12,7 +12,7 @@ export const shoeRouter = express.Router()
 shoeRouter.post("/add-shoe", upload.array("images"), addShoe)
 shoeRouter.get("/all-shoes",allShoes)
 shoeRouter.delete("/delete-shoe/:id",deleteShoe)
-shoeRouter.put("/update-shoe/:id", upload.single("image"), updateShoe)
+shoeRouter.put("/update-shoe/:id", upload.array("images"), updateShoe)
 
 // Admin
 shoeRouter.post("/add-admin", addAdmin)
