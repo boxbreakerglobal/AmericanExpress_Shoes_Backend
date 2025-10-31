@@ -12,6 +12,13 @@ const orderSchema = new mongoose.Schema({
     },
     items:{
         type:[Object]
+    },
+    location:{
+        type:String,
+        default:""
+    },
+    orderMode:{
+        type:String
     }
 
 },{timestamps:true})
