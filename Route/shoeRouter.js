@@ -4,6 +4,7 @@ import { addShoe, allShoes,deleteShoe,updateShoe } from "../Controller/ShoeContr
 import { addAdmin,adminLogin } from "../Controller/AdminController.js"
 import { userLogin , addUser} from "../Controller/UserController.js"
 import { initializePayment, verifyPayment } from "../Controller/PaymentController.js"
+import { allOrders, getEarningsByMonth, getEarningsMonthByMonth, getMonthlyEarnings, getTodayEarnings, getWeeklyEarnings } from "../Controller/OrderController.js"
 
 
 
@@ -27,3 +28,12 @@ shoeRouter.post("/user-login", userLogin)
 
 shoeRouter.post("/initiate-payment",initializePayment)
 shoeRouter.post("/payment/verify/:reference/:order", verifyPayment)
+
+// Orders
+shoeRouter.get("/all-orders",allOrders)
+
+// Earnings
+shoeRouter.get("/daily-earnings-and-orders",getTodayEarnings)
+shoeRouter.get("/monthly-earnings-and-orders", getMonthlyEarnings)
+shoeRouter.get("/weekly-orders", getWeeklyEarnings)
+shoeRouter.get("/month-by-month-earnings",getEarningsMonthByMonth)

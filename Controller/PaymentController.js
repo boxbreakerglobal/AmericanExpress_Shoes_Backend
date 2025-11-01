@@ -40,9 +40,9 @@ export const verifyPayment = async (req, res) => {
     );
 
     if (response.data.data.status === "success") {
-      res.json({ message: "Payment successful", data: response.data.data });
       const order = new orderModel(JSON.parse(order))
       order.save()
+      res.json({ message: "Payment successful", data: response.data.data });
     } else {
       res.status(400).json({ message: "Payment failed" });
     }
