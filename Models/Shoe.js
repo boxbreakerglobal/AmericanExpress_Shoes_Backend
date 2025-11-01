@@ -23,6 +23,9 @@ const shoeSchema = new mongoose.Schema({
     cost:{
         type:String
     },
+    retailCost:{
+        type:String
+    },
     type:{
         type:[String]
     },
