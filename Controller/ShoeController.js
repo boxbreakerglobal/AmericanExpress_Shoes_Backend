@@ -72,7 +72,7 @@ export const updateShoe = async(req,res)=>{
 
         const shoeDetails = await shoeModel.findById(id)
 
-        const update = await shoeModel.findByIdAndUpdate(id,{...req.body,image,type:req.body.type?type:shoeDetails.type,shoeStatus:req.body.shoeStatus?shoeStatus:shoeDetails.shoeStatus,Gender:req.body.Gender?Gender:shoeDetails.Gender}, {new:true})
+        const update = await shoeModel.findByIdAndUpdate(id,{...req.body,images:image,type:req.body.type?type:shoeDetails.type,shoeStatus:req.body.shoeStatus?shoeStatus:shoeDetails.shoeStatus,Gender:req.body.Gender?Gender:shoeDetails.Gender}, {new:true})
 
         return res.json({success:true, update})
 
