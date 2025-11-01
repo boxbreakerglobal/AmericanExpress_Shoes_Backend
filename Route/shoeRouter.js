@@ -4,7 +4,7 @@ import { addShoe, allShoes,deleteShoe,updateShoe } from "../Controller/ShoeContr
 import { addAdmin,adminLogin } from "../Controller/AdminController.js"
 import { userLogin , addUser} from "../Controller/UserController.js"
 import { initializePayment, verifyPayment } from "../Controller/PaymentController.js"
-import { allOrders, getEarningsByMonth, getEarningsMonthByMonth, getMonthlyEarnings, getTodayEarnings, getWeeklyEarnings } from "../Controller/orderController.js"
+import { allOrders , getEarningsMonthByMonth, getMonthlyEarnings, getTodayEarnings, getWeeklyEarnings } from "../Controller/orderController.js"
 
 
 
