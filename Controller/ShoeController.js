@@ -6,7 +6,14 @@ export const addShoe = async(req,res)=>{
     try{
         const imageUrl = req.files.map((item)=>item.path)
         const images = req.files.length>=0? imageUrl:[]
-        const newShoe = new shoeModel({...req.body,images})
+        const {Gender,type,shoeStatus} = req.body
+
+        const gender = JSON.parse(Gender)
+
+        const shoeType = JSON.parse(type)
+
+        const status = JSON.parse(shoeStatus)
+        const newShoe = new shoeModel({...req.body,images,Gender:gender,type:shoeType,shoeStatus:status})
         newShoe.save()
 
         return res.json({success:true})
@@ -36,17 +43,11 @@ export const updateShoe = async(req,res)=>{
     try{
         const {id}= req.params
 
-        const {Gender,type,shoeStatus} = req.body
+        const shoe = await shoeModel.findById(id)
 
-        const gender = JSON.parse(Gender)
+        const image = req.files.length>=0?req.files.map(item=>item.path):[...shoe.images]
 
-        const shoeType = JSON.parse(type)
-
-        const status = JSON.parse(shoeStatus)
-
-        const image = req.file? req.file.path:""
-
-        const update = await shoeModel.findByIdAndUpdate(id,{...req.body,image,Gender:gender,type:shoeType,shoeStatus:status}, {new:true})
+        const update = await shoeModel.findByIdAndUpdate(id,{...req.body,image}, {new:true})
 
         return res.json({success:true, update})
 
