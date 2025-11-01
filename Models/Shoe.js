@@ -36,7 +36,7 @@ const shoeSchema = new mongoose.Schema({
     size:{
         type:String
     },
-    americanSize:{
+    AmericanSize:{
         type:String
     },
     GhanaianSize:{
