@@ -44,10 +44,35 @@ export const updateShoe = async(req,res)=>{
         const {id}= req.params
 
         const shoe = await shoeModel.findById(id)
+        let shoeStatus = []
+        let type= []
+        let Gender = []
 
+        const updateBody = {}
+        if(req.body.shoeStatus){
+            let status = JSON.parse(req.body.shoeStatus)
+            shoeStatus = [...status]
+
+
+        }
+        
+        
+        if(req.body.Gender){
+            let status = JSON.parse(req.body.Gender)
+            Gender = [...status]
+
+        }
+        
+        if(req.body.type){
+            let status = JSON.parse(req.body.type)
+            type = [...status]
+
+        }
         const image = req.files.length>=0?req.files.map(item=>item.path):[...shoe.images]
 
-        const update = await shoeModel.findByIdAndUpdate(id,{...req.body,image}, {new:true})
+        const shoeDetails = await shoeModel.findById(id)
+
+        const update = await shoeModel.findByIdAndUpdate(id,{...req.body,image,type:req.body.type?type:shoeDetails.type,shoeStatus:req.body.shoeStatus?shoeStatus:shoeDetails.shoeStatus,Gender:req.body.Gender?Gender:shoeDetails.Gender}, {new:true})
 
         return res.json({success:true, update})
 
