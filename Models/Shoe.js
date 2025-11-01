@@ -13,12 +13,16 @@ const shoeSchema = new mongoose.Schema({
     quantity:{
         type:String
     },
+    shoeStatus:{
+        type:[String]
+    },
+
     
     images:{
         type:[String]
     },
     Gender:{
-        type:String
+        type:[String]
     },
     cost:{
         type:String
@@ -32,6 +36,12 @@ const shoeSchema = new mongoose.Schema({
     size:{
         type:String
     },
+    americanSize:{
+        type:String
+    },
+    GhanaianSize:{
+        type:String
+    }
     
 },{timestamps:true})
 
