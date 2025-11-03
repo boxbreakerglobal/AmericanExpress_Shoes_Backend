@@ -52,7 +52,7 @@ export const userLogin = async(req,res)=>{
 
 export const addMessage = async(req,res)=>{
     try{
-        const message = await contactModel(req.body)
+        const message = await  new contactModel(req.body)
 
         message.save()
 

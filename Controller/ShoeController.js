@@ -29,7 +29,9 @@ export const allShoes = async(req,res)=>{
     try{
         const allItems = await shoeModel.find({})
 
-        return res.json({success:true,allItems})
+        const shoes = allItems.filter(item=> item.quantity>0)
+
+        return res.json({success:true,allItems:shoes})
 
 
         
