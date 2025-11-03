@@ -5,10 +5,10 @@ const contactSchema = mongoose.Schema({
     name:{
         type:String
     },
-    phone:{
+    phoneNumber:{
         type:String
     },
-    message:{
+    comment:{
         type:String
     }
 })
