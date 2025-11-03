@@ -26,7 +26,7 @@ shoeRouter.post("/user-login", userLogin)
 //
 
 shoeRouter.post("/initiate-payment",initializePayment)
-shoeRouter.post("/payment/verify/:reference/:order", verifyPayment)
+shoeRouter.get("/payment/verify/:reference/:order", verifyPayment)
 
 // Orders
 shoeRouter.get("/all-orders",allOrders)
