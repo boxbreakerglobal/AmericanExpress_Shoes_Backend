@@ -11,7 +11,7 @@ const contactSchema = new mongoose.Schema({
     comment:{
         type:String
     }
-})
+},{timestamps:true})
 
 
 export const contactModel = mongoose.model("contact",contactSchema)
