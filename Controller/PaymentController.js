@@ -29,6 +29,7 @@ export const verifyPayment = async (req, res) => {
 
     const {order} = req.params
 
+    let orderBody = order
 
     const response = await axios.get(
       `https://api.paystack.co/transaction/verify/${reference}`,
@@ -40,7 +41,7 @@ export const verifyPayment = async (req, res) => {
     );
 
     if (response.data.data.status === "success") {
-      const order = new orderModel(JSON.parse(order))
+      const order = new orderModel(JSON.parse(orderBody))
       order.save()
       res.json({ success:true, message: "Payment successful", data: response.data.data });
     } else {
