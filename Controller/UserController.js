@@ -56,6 +56,8 @@ export const addMessage = async(req,res)=>{
 
         message.save()
 
+        return res.json({success:true})
+
     }catch(error){
         console.log(error)
         return res.json({success:false})
