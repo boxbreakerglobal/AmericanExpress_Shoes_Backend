@@ -48,6 +48,8 @@ export const getTodayEarnings = async (req, res) => {
 
 
 
+
+
 export const getMonthlyEarnings = async (req, res) => {
   try {
     // Get the current date
@@ -222,3 +224,21 @@ export const getEarningsMonthByMonth = async (req, res) => {
   }
 };
 
+export const addOrders = async(req , res)=>{
+    try{
+        const orders = new orderModel(req.body)
+
+        orders.save()
+
+        
+
+        return res.json({success:true, allOrders})
+
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}

@@ -1,4 +1,6 @@
 import { userModel } from "../Models/user.js";
+import { contactModel } from "../Models/ContactUs.js";
+
 
 
 
@@ -39,6 +41,32 @@ export const userLogin = async(req,res)=>{
         }
 
         return res.json({success:true})
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const addMessage = async(req,res)=>{
+    try{
+        const message = await contactModel(req.body)
+
+        message.save()
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const allMessages = async(req,res)=>{
+    try{
+        const allMessages = await contactModel.find({})
+
+        return res.json({success:true, allMessages})
 
 
 
