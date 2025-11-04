@@ -25,6 +25,10 @@ const orderSchema = new mongoose.Schema({
     },
     date:{
         type:String
+    },
+    status:{
+        type:String,
+        default:"pending"
     }
 
 },{timestamps:true})

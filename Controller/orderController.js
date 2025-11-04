@@ -243,3 +243,20 @@ export const addOrders = async(req , res)=>{
         return res.json({success:false})
     }
 }
+
+export const updateOrderStatus = async(req,res)=>{
+  try{
+    const {id} = req.params
+    const {status} = req.params
+
+    const update = await orderModel.findByIdAndUpdate(id,{status},{new:true})
+
+    return res.json({success:true})
+
+    
+
+  }catch(error){
+    console.log(error)
+    return res.json({success:true})
+  }
+}

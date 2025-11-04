@@ -4,7 +4,7 @@ import { addShoe, allShoes,deleteShoe,updateShoe } from "../Controller/ShoeContr
 import { addAdmin,addDesktopHeroImage,addModileHeroImage,adminLogin, DeleteDesktopHeroImages, DeleteMobileHeroImages, fetchHeroImages, updatedDesktopHeroImage,  updateMobileHeroImage } from "../Controller/AdminController.js"
 import { userLogin , addUser} from "../Controller/UserController.js"
 import { initializePayment, verifyPayment } from "../Controller/PaymentController.js"
-import { addOrders, allOrders , getEarningsMonthByMonth, getMonthlyEarnings, getTodayEarnings, getWeeklyEarnings } from "../Controller/orderController.js"
+import { addOrders, allOrders , getEarningsMonthByMonth, getMonthlyEarnings, getTodayEarnings, getWeeklyEarnings, updateOrderStatus } from "../Controller/orderController.js"
 import { addMessage, allMessages } from "../Controller/UserController.js"
 
 export const shoeRouter = express.Router()
@@ -43,6 +43,7 @@ shoeRouter.post("/payment/verify/:reference", verifyPayment)
 // Orders
 shoeRouter.get("/all-orders",allOrders)
 shoeRouter.post("/add-order",addOrders)
+shoeRouter.put("/update-order-status/:id/:status",updateOrderStatus)
 
 // Earnings
 shoeRouter.get("/daily-earnings-and-orders",getTodayEarnings)
