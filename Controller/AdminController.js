@@ -1,7 +1,8 @@
 import { adminModel } from "../Models/admin.js";
 import bcrypt from "bcryptjs"
 import { contactModel } from "../Models/ContactUs.js";
-import { heroModel } from "../Models/hero.js";
+import { mobileHeroModel } from "../Models/heroMobile.js";
+import { desktopHeroModel } from "../Models/heroDesktop.js";
 
 
 export const addAdmin = async(req, res)=>{
@@ -70,22 +71,26 @@ export const deleteMessage = async(req,res)=>{
     }
 }
 
-export const addImage = async(req,res)=>{
+export const addModileHeroImage = async(req,res)=>{
     try{
-        const {type} = req.body
-        if(type=="mobile"){
-            const newImage = new heroModel({mobile:req.file.path,desktop:""})
-            newImage.save()
-            return res.json({success:true})
+    const image = req.file.path?req.file.path:""
+    
+    const newMobileHero = new mobileHeroModel({image})
 
-        }
-        if(type=="desktop"){
-            const newImage = new heroModel({desktop:req.file.path,mobile:""})
-            newImage.save()
-            return res.json({success:true})
+    newMobileHero.save()
 
-        }
-        
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+export const addDesktopHeroImage = async(req,res)=>{
+    try{
+    const image = req.file.path?req.file.path:""
+    
+    const newMobileHero = new mobileHeroModel({image})
+
+    newMobileHero.save()
 
     }catch(error){
         console.log(error)
@@ -93,13 +98,76 @@ export const addImage = async(req,res)=>{
     }
 }
 
-export const updateImages = async(req,res)=>{
+export const updateMobileHeroImage = async(req,res)=>{
     try{
         const {id} = req.params
 
-        const update = await heroModel.findByIdAndUpdate(id,req.body,{new:true})
+        const update = await mobileHeroModel.findByIdAndUpdate(id,req.body,{new:true})
 
         return res.json({success:true})
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const updatedDesktopHeroImage = async(req,res)=>{
+    try{
+        const {id} = req.params
+
+        const update = await desktopHeroModel.findByIdAndUpdate(id,req.body,{new:true})
+
+        return res.json({success:true})
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const DeleteMobileHeroImages = async(req,res)=>{
+    try{
+        const {id} = req.params
+
+        const update = await mobileHeroModel.findByIdAndUpdate(id,req.body,{new:true})
+
+        return res.json({success:true})
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+export const DeleteDesktopHeroImages = async(req,res)=>{
+    try{
+        const {id} = req.params
+
+        const update = await mobileHeroModel.findByIdAndUpdate(id,req.body,{new:true})
+
+        return res.json({success:true})
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const fetchHeroImages = async(req,res)=>{
+    try{
+        const mobileHeroImages = await mobileHeroModel.find({})
+
+        const desktopHeroImages = await desktopHeroModel.find({})
+
+        return res.json({success:true, mobile:mobileHeroImages[0].image, desktop: desktopHeroImages[0].image})
 
 
 

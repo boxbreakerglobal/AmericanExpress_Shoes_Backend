@@ -1,7 +1,7 @@
 import express from "express"
 import { upload } from "../Middleware/ImageUpload.js"
 import { addShoe, allShoes,deleteShoe,updateShoe } from "../Controller/ShoeController.js"
-import { addAdmin,addImage,adminLogin, updateImages } from "../Controller/AdminController.js"
+import { addAdmin,addDesktopHeroImage,addImage,addModileHeroImage,adminLogin, DeleteDesktopHeroImages, DeleteMobileHeroImages, fetchHeroImages, updatedDesktopHeroImage, updateImages, updateMobileHeroImage } from "../Controller/AdminController.js"
 import { userLogin , addUser} from "../Controller/UserController.js"
 import { initializePayment, verifyPayment } from "../Controller/PaymentController.js"
 import { addOrders, allOrders , getEarningsMonthByMonth, getMonthlyEarnings, getTodayEarnings, getWeeklyEarnings } from "../Controller/orderController.js"
@@ -18,8 +18,17 @@ shoeRouter.put("/update-shoe/:id", upload.array("images"), updateShoe)
 shoeRouter.post("/add-admin", addAdmin)
 shoeRouter.post("/admin-login", adminLogin)
 shoeRouter.delete("/delete-message/:id",deleteShoe)
-shoeRouter.post("/add-image",upload.single("image"),addImage)
-shoeRouter.put("/update-image/:id", upload.single("image"),updateImages)
+//Admin He
+shoeRouter.post("/add-desktop-hero-image",upload.single("image"),addDesktopHeroImage)
+shoeRouter.post("/add-mobile-hero-image",upload.single("image"),addModileHeroImage)
+
+shoeRouter.put("/update-mobile-hero-image/:id",upload.single("image"),updateMobileHeroImage)
+shoeRouter.put("/update-desktop-hero-image/:id",upload.single("image"),updatedDesktopHeroImage)
+
+shoeRouter.delete("/delete-mobile-hero-image/:id",upload.single("image"),DeleteMobileHeroImages)
+shoeRouter.delete("/delete-mobile-hero-image/:id",upload.single("image"),DeleteDesktopHeroImages)
+
+shoeRouter.get("/all-hero-images", fetchHeroImages)
 
 //User
 
