@@ -1,6 +1,7 @@
 import { adminModel } from "../Models/admin.js";
 import bcrypt from "bcryptjs"
 import { contactModel } from "../Models/ContactUs.js";
+import { heroModel } from "../Models/hero.js";
 
 
 export const addAdmin = async(req, res)=>{
@@ -60,6 +61,45 @@ export const deleteMessage = async(req,res)=>{
 
         return res.json({success:true})
         
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const addImage = async(req,res)=>{
+    try{
+        const {type} = req.body
+        if(type=="mobile"){
+            const newImage = new heroModel({mobile:req.file.path,desktop:""})
+            newImage.save()
+            return res.json({success:true})
+
+        }
+        if(type=="desktop"){
+            const newImage = new heroModel({desktop:req.file.path,mobile:""})
+            newImage.save()
+            return res.json({success:true})
+
+        }
+        
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const updateImages = async(req,res)=>{
+    try{
+        const {id} = req.params
+
+        const update = await heroModel.findByIdAndUpdate(id,req.body,{new:true})
+
+        return res.json({success:true})
 
 
 
