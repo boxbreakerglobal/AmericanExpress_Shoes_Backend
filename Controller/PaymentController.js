@@ -7,7 +7,7 @@ export const initializePayment = async (req, res) => {
     const { email, amount } = req.body;
     const response = await axios.post(
       "https://api.paystack.co/transaction/initialize",
-      { email, amount: amount * 100 , callback_url:"https://american-express-shoes.vercel.app/verify-payment"}, // Paystack expects amount in kobo
+      { email, amount: amount * 100 , callback_url:" https://american-express-shoes.vercel.app/verify-payment"}, // Paystack expects amount in kobo
       {
         headers: {
           Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
@@ -27,7 +27,7 @@ export const verifyPayment = async (req, res) => {
   try {
     const { reference } = req.params;
 
-    const {order} = req.params
+    const order= req.body
 
     let orderBody = order
 
@@ -39,11 +39,11 @@ export const verifyPayment = async (req, res) => {
         },
       }
     );
-    console.log(response)
+    console.log(response.data.data)
     console.log(order)
 
     if (response.data.status === true) {
-      const order = new orderModel(JSON.parse(orderBody))
+      const order = new orderModel(orderBody)
       order.save()
       return res.json({ success:true, message: "Payment successful", data: response.data.data });
     } else {
