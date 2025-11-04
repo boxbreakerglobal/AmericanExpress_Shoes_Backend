@@ -153,7 +153,7 @@ export const DeleteDesktopHeroImages = async(req,res)=>{
     try{
         const {id} = req.params
 
-        const update = await mobileHeroModel.findByIdAndDelete(id)
+        const update = await desktopHeroModel.findByIdAndDelete(id)
 
         return res.json({success:true})
 
