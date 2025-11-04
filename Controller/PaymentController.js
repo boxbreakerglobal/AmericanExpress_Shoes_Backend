@@ -7,7 +7,7 @@ export const initializePayment = async (req, res) => {
     const { email, amount } = req.body;
     const response = await axios.post(
       "https://api.paystack.co/transaction/initialize",
-      { email, amount: amount * 100 , callback_url:"https://americanexpress-shoes-backend.onrender.com/verify-payment"}, // Paystack expects amount in kobo
+      { email, amount: amount * 100 , callback_url:"https://american-express-shoes.vercel.app/verify-payment"}, // Paystack expects amount in kobo
       {
         headers: {
           Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
