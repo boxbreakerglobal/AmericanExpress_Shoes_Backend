@@ -26,7 +26,7 @@ shoeRouter.put("/update-mobile-hero-image/:id",upload.single("image"),updateMobi
 shoeRouter.put("/update-desktop-hero-image/:id",upload.single("image"),updatedDesktopHeroImage)
 
 shoeRouter.delete("/delete-mobile-hero-image/:id",upload.single("image"),DeleteMobileHeroImages)
-shoeRouter.delete("/delete-mobile-hero-image/:id",upload.single("image"),DeleteDesktopHeroImages)
+shoeRouter.delete("/delete-desktop-hero-image/:id",upload.single("image"),DeleteDesktopHeroImages)
 
 shoeRouter.get("/all-hero-images", fetchHeroImages)
 
