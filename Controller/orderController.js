@@ -29,11 +29,12 @@ export const getTodayEarnings = async (req, res) => {
 
     // Find all orders from today
     const todayOrders = await orderModel.find({
-      date: { $gte: startOfDay, $lte: endOfDay },
+      createdAt: { $gte: startOfDay, $lte: endOfDay },
     });
 
     // Sum the total values
     const totalEarnings = todayOrders.reduce((sum, order) => sum + order.total, 0);
+    console.log(todayOrders)
 
     res.json({
       message: "Today's earnings calculated successfully",
@@ -61,7 +62,7 @@ export const getMonthlyEarnings = async (req, res) => {
 
     // Find all orders within this month
     const monthlyOrders = await orderModel.find({
-      date: { $gte: startOfMonth, $lte: endOfMonth },
+      createdAt: { $gte: startOfMonth, $lte: endOfMonth },
     });
 
     // Sum the total values
@@ -99,7 +100,7 @@ export const getWeeklyEarnings = async (req, res) => {
 
     // Fetch all orders between start and end of week
     const weeklyOrders = await orderModel.find({
-      date: { $gte: startOfWeek, $lte: endOfWeek },
+      createdAt: { $gte: startOfWeek, $lte: endOfWeek },
     });
 
     // Calculate totals
