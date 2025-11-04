@@ -90,7 +90,7 @@ export const addDesktopHeroImage = async(req,res)=>{
     try{
     const image = req.file.path?req.file.path:""
     
-    const newMobileHero = new mobileHeroModel({image})
+    const newMobileHero = new desktopHeroModel({image})
 
     newMobileHero.save()
 
