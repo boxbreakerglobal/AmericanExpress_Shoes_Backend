@@ -79,6 +79,8 @@ export const addModileHeroImage = async(req,res)=>{
 
     newMobileHero.save()
 
+    return res.json({success:true})
+
     }catch(error){
         console.log(error)
         return res.json({success:false})
@@ -91,6 +93,8 @@ export const addDesktopHeroImage = async(req,res)=>{
     const newMobileHero = new mobileHeroModel({image})
 
     newMobileHero.save()
+
+    return res.json({success:true})
 
     }catch(error){
         console.log(error)
