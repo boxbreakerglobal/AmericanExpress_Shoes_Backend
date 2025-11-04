@@ -17,6 +17,7 @@ shoeRouter.put("/update-shoe/:id", upload.array("images"), updateShoe)
 // Admin
 shoeRouter.post("/add-admin", addAdmin)
 shoeRouter.post("/admin-login", adminLogin)
+shoeRouter.delete("/delete-message/:id",deleteShoe)
 
 //User
 
@@ -40,3 +41,6 @@ shoeRouter.get("/month-by-month-earnings",getEarningsMonthByMonth)
 
 shoeRouter.post("/add-message", addMessage)
 shoeRouter.get("/all-messages", allMessages)
+
+
+//
