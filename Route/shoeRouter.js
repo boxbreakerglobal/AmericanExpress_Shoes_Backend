@@ -1,7 +1,7 @@
 import express from "express"
 import { upload } from "../Middleware/ImageUpload.js"
 import { addShoe, allShoes,deleteShoe,updateShoe } from "../Controller/ShoeController.js"
-import { addAdmin,addDesktopHeroImage,addImage,addModileHeroImage,adminLogin, DeleteDesktopHeroImages, DeleteMobileHeroImages, fetchHeroImages, updatedDesktopHeroImage, updateImages, updateMobileHeroImage } from "../Controller/AdminController.js"
+import { addAdmin,addDesktopHeroImage,addModileHeroImage,adminLogin, DeleteDesktopHeroImages, DeleteMobileHeroImages, fetchHeroImages, updatedDesktopHeroImage, updateImages, updateMobileHeroImage } from "../Controller/AdminController.js"
 import { userLogin , addUser} from "../Controller/UserController.js"
 import { initializePayment, verifyPayment } from "../Controller/PaymentController.js"
 import { addOrders, allOrders , getEarningsMonthByMonth, getMonthlyEarnings, getTodayEarnings, getWeeklyEarnings } from "../Controller/orderController.js"
