@@ -106,7 +106,7 @@ export const updateMobileHeroImage = async(req,res)=>{
     try{
         const {id} = req.params
 
-        const update = await mobileHeroModel.findByIdAndUpdate(id,req.body,{new:true})
+        const update = await mobileHeroModel.findByIdAndUpdate(id,{image:req.file.path},{new:true})
 
         return res.json({success:true})
 
@@ -122,7 +122,7 @@ export const updatedDesktopHeroImage = async(req,res)=>{
     try{
         const {id} = req.params
 
-        const update = await desktopHeroModel.findByIdAndUpdate(id,req.body,{new:true})
+        const update = await desktopHeroModel.findByIdAndUpdate(id,{image:req.file.path},{new:true})
 
         return res.json({success:true})
 
@@ -138,7 +138,7 @@ export const DeleteMobileHeroImages = async(req,res)=>{
     try{
         const {id} = req.params
 
-        const update = await mobileHeroModel.findByIdAndUpdate(id,req.body,{new:true})
+        const update = await mobileHeroModel.findByIdDelete(id)
 
         return res.json({success:true})
 
@@ -153,7 +153,7 @@ export const DeleteDesktopHeroImages = async(req,res)=>{
     try{
         const {id} = req.params
 
-        const update = await mobileHeroModel.findByIdAndUpdate(id,req.body,{new:true})
+        const update = await mobileHeroModel.findByIdAndUpdate(id)
 
         return res.json({success:true})
 
