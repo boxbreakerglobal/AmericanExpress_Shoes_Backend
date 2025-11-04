@@ -171,7 +171,7 @@ export const fetchHeroImages = async(req,res)=>{
 
         const desktopHeroImages = await desktopHeroModel.find({})
 
-        return res.json({success:true, mobile:mobileHeroImages[0], desktop: desktopHeroImages[0]})
+        return res.json({success:true, mobile:mobileHeroImages, desktop: desktopHeroImages})
 
 
 
