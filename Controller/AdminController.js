@@ -1,5 +1,6 @@
 import { adminModel } from "../Models/admin.js";
 import bcrypt from "bcryptjs"
+import { contactModel } from "../Models/ContactUs.js";
 
 
 export const addAdmin = async(req, res)=>{
@@ -42,6 +43,23 @@ export const adminLogin = async(req,res)=>{
         }
 
         return res.json({success:true})
+
+
+
+    }catch(error){
+        console.log(error)
+        return res.json({success:false})
+    }
+}
+
+export const deleteMessage = async(req,res)=>{
+    try{
+        const {id}= req.params
+
+        await contactModel.findByIdAndDelete(id)
+
+        return res.json({success:true})
+        
 
 
 
