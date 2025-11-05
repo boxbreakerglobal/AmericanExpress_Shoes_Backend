@@ -114,9 +114,10 @@ export const addDesktopHeroImage = async(req,res)=>{
 
     newMobileHero.save()
 
-    console.log(req.file.path)
+    console.log(req.file)
     console.log(image)
     console.log(req.body)
+    console.log(newMobileHero)
     return res.json({success:true})
 
     }catch(error){
