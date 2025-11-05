@@ -1,56 +1,67 @@
 import axios from "axios";
 import { orderModel } from "../Models/Orders.js";
+import { shoeModel } from "../Models/Shoe.js";
 const PAYSTACK_SECRET_KEY = process.env.PAYSTACK_SECRET_KEY;
 
 export const initializePayment = async (req, res) => {
-  try {
-    const { email, amount } = req.body;
-    const response = await axios.post(
-      "https://api.paystack.co/transaction/initialize",
-      { email, amount: amount * 100 , callback_url:" https://american-express-shoes.vercel.app/verify-payment"}, // Paystack expects amount in kobo
-      {
-        headers: {
-          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+  try {
+    const { email, amount } = req.body;
+    const response = await axios.post(
+      "https://api.paystack.co/transaction/initialize",
+      { email, amount: amount * 100 , callback_url:" https://american-express-shoes.vercel.app/verify-payment"}, // Paystack expects amount in kobo
+      {
+        headers: {
+          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    res.json(response.data);
-  } catch (error) {
-    console.error(error.response?.data || error.message);
-    res.status(500).json({ error: "Payment initialization failed" });
-  }
+    res.json(response.data);
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+    res.status(500).json({ error: "Payment initialization failed" });
+  }
 };
 
 export const verifyPayment = async (req, res) => {
-  try {
-    const { reference } = req.params;
+  try {
+    const { reference } = req.params;
 
-    const order= req.body
+    const order= req.body
 
-    let orderBody = order
+    let orderBody = order
 
-    const response = await axios.get(
-      `https://api.paystack.co/transaction/verify/${reference}`,
-      {
-        headers: {
-          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
-        },
-      }
-    );
-    console.log(response.data.data)
-    console.log(order)
+    const response = await axios.get(
+      `https://api.paystack.co/transaction/verify/${reference}`,
+      {
+        headers: {
+          Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
+        },
+      }
+    );
+    console.log(response.data.data)
+    console.log(order)
 
-    if (response.data.status === true) {
-      const order = new orderModel(orderBody)
-      order.save()
-      return res.json({ success:true, message: "Payment successful", data: response.data.data });
-    } else {
-      res.status(400).json({ message: "Payment failed" });
-    }
-  } catch (error) {
-    console.error(error.response?.data || error.message);
-    res.status(500).json({ error: "Payment verification failed" });
-  }
+    if (response.data.status === true) {
+      const items = orderBody.items
+
+      for(let item of items){
+        const shoe = await shoeModel.findById(item.id)
+
+        const update = await shoeModel.findByIdAndUpdate(item.id,{quantity:String(Number(shoe.quantity)-item.quantity)},{new:true})
+        
+      }
+
+      const order = new orderModel(orderBody)
+      order.save()
+      return res.json({ success:true, message: "Payment successful", data: response.data.data });
+    } else {
+      res.status(400).json({ message: "Payment failed" });
+    }
+  } catch (error) {
+    console.error(error.response?.data || error.message);
+    res.status(500).json({ error: "Payment verification failed" });
+  }
 };
+
