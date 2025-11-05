@@ -116,6 +116,7 @@ export const addDesktopHeroImage = async(req,res)=>{
 
     console.log(req.file.path)
     console.log(image)
+    console.log(req.body)
     return res.json({success:true})
 
     }catch(error){
