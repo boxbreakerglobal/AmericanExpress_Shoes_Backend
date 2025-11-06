@@ -91,40 +91,39 @@ export const deleteMessage = async(req,res)=>{
     }
 }
 
-export const addModileHeroImage = async(req,res)=>{
-    try{
-    const image = req.file.path?req.file.path:""
-    
-    const newMobileHero = new mobileHeroModel({image})
+export const addMobileHeroImage = async (req, res) => {
+  try {
+    const image = req.file ? req.file.path : "";
 
-    newMobileHero.save()
+    const newMobileHero = new mobileHeroModel({ image });
+    await newMobileHero.save();
 
-    return res.json({success:true})
+    res.json({ success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
 
-    }catch(error){
-        console.log(error)
-        return res.json({success:false})
-    }
-}
-export const addDesktopHeroImage = async(req,res)=>{
-    try{
-    const image = req.file.path?req.file.path:""
-    
-    const newMobileHero = new desktopHeroModel({image})
+export const addDesktopHeroImage = async (req, res) => {
+  try {
+    const image = req.file ? req.file.path : "";
 
-    newMobileHero.save()
+    const newDesktopHero = new desktopHeroModel({ image });
+    await newDesktopHero.save();
 
-    console.log(req.file)
-    console.log(image)
-    console.log(req.body)
-    console.log(newMobileHero)
-    return res.json({success:true})
+    console.log(req.file);
+    console.log(image);
+    console.log(req.body);
+    console.log(newDesktopHero);
 
-    }catch(error){
-        console.log(error)
-        return res.json({success:false})
-    }
-}
+    res.json({ success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 
 export const updateMobileHeroImage = async(req,res)=>{
     try{
